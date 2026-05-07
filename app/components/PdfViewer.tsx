@@ -156,10 +156,11 @@ export default function PdfViewer({ file }: PdfViewerProps) {
             return 1;
         }
 
-        const horizontalPadding = 48;
-        const verticalPadding = 96;
-        const availableWidth = Math.max(320, viewportSize.width - horizontalPadding);
-        const availableHeight = Math.max(240, viewportSize.height - verticalPadding);
+        const isMobileViewport = viewportSize.width < 640;
+        const horizontalPadding = isMobileViewport ? 12 : 48;
+        const verticalPadding = isMobileViewport ? 32 : 96;
+        const availableWidth = Math.max(120, viewportSize.width - horizontalPadding);
+        const availableHeight = Math.max(120, viewportSize.height - verticalPadding);
 
         return Math.min(availableWidth / pageSize.width, availableHeight / pageSize.height);
     }, [pageSize, viewportSize.height, viewportSize.width]);
@@ -249,7 +250,7 @@ export default function PdfViewer({ file }: PdfViewerProps) {
     if (isLastPage && numPages) {
         return (
             <div className="flex min-h-0 flex-1 flex-col gap-4">
-                <div className="flex-1 overflow-y-auto rounded-2xl border border-white/10 bg-slate-950/70 p-8 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+                <div className="flex-1 overflow-y-auto rounded-2xl border border-white/10 bg-slate-950/70 p-4 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-8">
                     <StatsCard
                         quizCount={quizCount}
                         correctAnswers={correctAnswers}
@@ -265,7 +266,7 @@ export default function PdfViewer({ file }: PdfViewerProps) {
         <div className="flex min-h-0 flex-1 flex-col gap-4">
             <div
                 ref={containerRef}
-                className="relative flex min-h-[60vh] flex-1 items-center justify-center overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70 p-4 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-6"
+                className="relative flex min-h-[52vh] flex-1 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:min-h-[60vh] sm:rounded-[2rem] sm:p-6"
             >
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.10),transparent_35%),radial-gradient(circle_at_bottom,rgba(59,130,246,0.08),transparent_35%)]" />
 
@@ -303,8 +304,8 @@ export default function PdfViewer({ file }: PdfViewerProps) {
                 )}
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:px-5">
-                <div className="flex items-center gap-2 text-sm text-slate-300">
+            <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-slate-950/70 px-3 py-3 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:px-5">
+                <div className="flex items-center justify-between gap-2 text-sm text-slate-300 sm:w-auto sm:justify-start">
                     <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-cyan-200/80">
                         Page {currentPage}/{numPages ?? "-"}
                     </span>
@@ -312,11 +313,11 @@ export default function PdfViewer({ file }: PdfViewerProps) {
                     <span className="hidden sm:inline">Zoom {Math.round(renderScale * 100)}%</span>
                 </div>
 
-                <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 p-1">
+                <div className="flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 p-1 sm:w-auto">
                     <button
                         onClick={goToPreviousPage}
                         disabled={isFirstPage}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full text-cyan-100 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full text-cyan-100 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10"
                         aria-label="Previous slide"
                     >
                         <ChevronLeft size={20} />
@@ -324,24 +325,24 @@ export default function PdfViewer({ file }: PdfViewerProps) {
                     <button
                         onClick={goToNextPage}
                         disabled={isLastPage}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full text-cyan-100 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full text-cyan-100 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10"
                         aria-label="Next slide"
                     >
                         <ChevronRight size={20} />
                     </button>
                 </div>
 
-                <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 p-1">
+                <div className="flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 p-1 sm:w-auto">
                     <button
                         onClick={() => changeZoom(-0.12)}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full text-cyan-100 transition hover:bg-white/10"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full text-cyan-100 transition hover:bg-white/10 sm:h-10 sm:w-10"
                         aria-label="Zoom out"
                     >
                         <Minus size={18} />
                     </button>
                     <button
                         onClick={handleResetZoom}
-                        className="inline-flex h-10 items-center justify-center rounded-full px-3 text-xs font-medium uppercase tracking-[0.18em] text-cyan-100 transition hover:bg-white/10"
+                        className="inline-flex h-9 items-center justify-center rounded-full px-3 text-[10px] font-medium uppercase tracking-[0.14em] text-cyan-100 transition hover:bg-white/10 sm:h-10 sm:text-xs sm:tracking-[0.18em]"
                     >
                         <Maximize2 className="mr-2 h-3.5 w-3.5" />
                         Fit

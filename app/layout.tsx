@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PDF Slideshow",
-  description: "Present your PDFs like a modern slideshow.",
+  title: "Upgraded Learning",
+  description: "Interactive Learning where instead of just reading the slides, you can also understand by doing pop quizzes.",
 };
 
 export default function RootLayout({
@@ -15,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full overflow-hidden">
-      <body className={`${inter.className} h-full overflow-hidden bg-transparent antialiased`}>
+    <html lang="en" className="h-full overflow-x-hidden">
+      <body className={`${inter.className} h-full overflow-x-hidden bg-transparent antialiased`}>
         {children}
       </body>
     </html>

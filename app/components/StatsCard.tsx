@@ -32,50 +32,50 @@ export default function StatsCard({ quizCount, correctAnswers, wrongAnswers }: S
   };
 
   return (
-    <div className="space-y-6">
-      <div className="text-center mb-8">
-        <h2 className="text-4xl font-bold text-white mb-2">Presentation Complete!</h2>
+    <div className="space-y-5 sm:space-y-6">
+      <div className="mb-6 text-center sm:mb-8">
+        <h2 className="mb-2 text-2xl font-bold text-white sm:text-4xl">Presentation Complete!</h2>
         <p className="text-slate-300">Here's how you performed</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-4">
         {/* Quiz Count Card */}
-        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-4 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-6">
+          <div className="mb-3 flex items-center gap-3 sm:mb-4">
             <BarChart3 className="h-5 w-5 text-cyan-400" />
             <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/70">Quizzes</p>
           </div>
-          <p className="text-4xl font-bold text-white">{quizCount}</p>
+          <p className="text-3xl font-bold text-white sm:text-4xl">{quizCount}</p>
           <p className="mt-2 text-sm text-slate-400">times appeared</p>
         </div>
 
         {/* Correct Answers Card */}
-        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-4 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-6">
+          <div className="mb-3 flex items-center gap-3 sm:mb-4">
             <CheckCircle2 className="h-5 w-5 text-green-400" />
             <p className="text-xs uppercase tracking-[0.2em] text-green-200/70">Correct</p>
           </div>
-          <p className="text-4xl font-bold text-green-400">{correctAnswers}</p>
+          <p className="text-3xl font-bold text-green-400 sm:text-4xl">{correctAnswers}</p>
           <p className="mt-2 text-sm text-slate-400">correct attempts</p>
         </div>
 
         {/* Wrong Answers Card */}
-        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-4 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-6">
+          <div className="mb-3 flex items-center gap-3 sm:mb-4">
             <XCircle className="h-5 w-5 text-red-400" />
             <p className="text-xs uppercase tracking-[0.2em] text-red-200/70">Incorrect</p>
           </div>
-          <p className="text-4xl font-bold text-red-400">{wrongAnswers}</p>
+          <p className="text-3xl font-bold text-red-400 sm:text-4xl">{wrongAnswers}</p>
           <p className="mt-2 text-sm text-slate-400">wrong attempts</p>
         </div>
 
         {/* Understanding Metric Card */}
-        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-4 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-6">
+          <div className="mb-3 flex items-center gap-3 sm:mb-4">
             <TrendingUp className={`h-5 w-5 ${getMetricColor(understandingMetric)}`} />
             <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Understanding</p>
           </div>
-          <p className={`text-4xl font-bold ${getMetricColor(understandingMetric)}`}>
+          <p className={`text-3xl font-bold sm:text-4xl ${getMetricColor(understandingMetric)}`}>
             {understandingMetric}%
           </p>
           <p className={`mt-2 text-sm ${getMetricColor(understandingMetric)}`}>
@@ -86,7 +86,7 @@ export default function StatsCard({ quizCount, correctAnswers, wrongAnswers }: S
 
       {/* Success Rate Bar */}
       {totalAttempts > 0 && (
-        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+        <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-4 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-6">
           <p className="mb-3 text-sm font-medium text-slate-300">Success Rate</p>
           <div className="h-3 w-full overflow-hidden rounded-full bg-white/10">
             <div

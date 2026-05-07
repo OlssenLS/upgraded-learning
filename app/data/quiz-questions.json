@@ -1,0 +1,9 @@
+{
+  "default": {
+    "question": "Randomly generated question based on material!",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "correct": 0
+  }
+}
+
+
